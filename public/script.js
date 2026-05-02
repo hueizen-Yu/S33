@@ -971,6 +971,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // OAuth Login Check
+    const urlParams = new URLSearchParams(window.location.search);
+    const oauthToken = urlParams.get('oauth_token');
+    const oauthUsername = urlParams.get('username');
+    if (oauthToken && oauthUsername) {
+        sessionStorage.setItem('token', oauthToken);
+        sessionStorage.setItem('username', oauthUsername);
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
+
     // Auto-login check
     if (sessionStorage.getItem('token')) {
         const username = sessionStorage.getItem('username');
