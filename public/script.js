@@ -823,6 +823,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('register-form').style.display = 'none';
             document.getElementById('verify-code-section').style.display = 'block';
             document.getElementById('register-footer-links').style.display = 'none';
+            document.getElementById('verify-footer-links').style.display = 'block';
         } else {
             const data = await res.json();
             if (data.code === 'DUPLICATE_USERNAME') {
