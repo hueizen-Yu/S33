@@ -1,13 +1,12 @@
 :root {
-    --primary: #00f0ff; /* Cyberpunk Cyan */
-    --secondary: #d946ef; /* Neon Fuchsia */
-    --bg-dark: #09090b; /* Deep dark zinc */
-    --glass-bg: rgba(24, 24, 27, 0.75); /* Dark semi-transparent */
-    --glass-border: rgba(0, 240, 255, 0.2); /* Subtle cyan border */
+    --primary: #e5b3bb; /* Rose Gold Accent */
+    --secondary: #c9939f; /* Deep Rose */
+    --bg-dark: #090a0f; /* Obsidian Black */
+    --glass-bg: rgba(20, 20, 25, 0.75); /* Dark Glass */
+    --glass-border: rgba(229, 179, 187, 0.25); /* Rose Gold Tinted Border */
     --text-primary: #f8fafc;
     --text-muted: #94a3b8;
-    --text-general: #f8fafc; /* New: General text color */
-    --glow-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+    --text-general: #f8fafc;
 }
 
 * {
