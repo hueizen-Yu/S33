@@ -1,9 +1,9 @@
 :root {
-    --primary: #e5b3bb; /* Rose Gold Accent */
-    --secondary: #c9939f; /* Deep Rose */
-    --bg-dark: #090a0f; /* Obsidian Black */
-    --glass-bg: rgba(20, 20, 25, 0.75); /* Dark Glass */
-    --glass-border: rgba(229, 179, 187, 0.25); /* Rose Gold Tinted Border */
+    --primary: #e5b3bb;
+    --secondary: #c9939f;
+    --bg-dark: #090a0f;
+    --glass-bg: rgba(20, 20, 25, 0.75);
+    --glass-border: rgba(229, 179, 187, 0.25);
     --text-primary: #f8fafc;
     --text-muted: #94a3b8;
     --text-general: #f8fafc;
