@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>哈晶礦</title>
     <meta property="og:title" content="哈晶礦">
-    <meta property="og:description" content=" ">
+    <meta property="og:description" content="哈晶礦線上管理系統">
     <meta property="og:type" content="website">
     <meta name="robots" content="nosnippet">
-    <meta name="description" content=" ">
+    <meta name="description" content="哈晶礦線上管理系統">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20260501_2217">
+    <link rel="stylesheet" href="style.css?v=20260503_1241">
 
     <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -24,7 +24,7 @@
     </div>
 
     <!-- Login Page -->
-    <div id="login-page" class="page container">
+    <div id="login-page" class="page container large">
         <div class="glass-card">
             <h1 id="login-title">系統登入</h1>
 
@@ -63,7 +63,7 @@
     </div>
 
     <!-- Register Page -->
-    <div id="register-page" class="page container">
+    <div id="register-page" class="page container large">
         <div class="glass-card">
             <h1 id="register-title">註冊帳號</h1>
 
@@ -81,7 +81,7 @@
                 </div>
                 <div class="input-group">
                     <label for="reg-title">稱謂</label>
-                    <select id="reg-title" required style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.5); outline: none; font-size: 16px; font-family: inherit; color: #333;">
+                    <select id="reg-title" required style="width: 100%; padding: 12px 16px; border-radius: 12px; outline: none; font-size: 16px; font-family: inherit;">
                         <option value="">請選擇稱謂</option>
                         <option value="先生">先生</option>
                         <option value="小姐">小姐</option>
@@ -105,7 +105,7 @@
                 </div>
                 <div class="input-group">
                     <label for="reg-city">縣市（選填）</label>
-                    <select id="reg-city" style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.5); outline: none; font-size: 16px; font-family: inherit; color: #333;">
+                    <select id="reg-city" style="width: 100%; padding: 12px 16px; border-radius: 12px; outline: none; font-size: 16px; font-family: inherit;">
                         <option value="">請選擇縣市</option>
                         <option>台北市</option>
                         <option>新北市</option>
@@ -170,7 +170,7 @@
     </div>
 
     <!-- Home / Form Page -->
-    <div id="form-page" class="page active container">
+    <div id="form-page" class="page active container large">
         <div class="glass-card">
             <!-- Top Navigation Bar -->
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
@@ -190,7 +190,7 @@
             <p class="subtitle">請勾選您需要的品項</p>
             
             <form id="health-form">
-                <div id="product-container" class="checkbox-group" style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 15px;">
+                <div id="product-container">
                     <!-- Products will be injected here -->
                 </div>
                 
@@ -217,7 +217,7 @@
     </div>
 
     <!-- Product Management Page -->
-    <div id="manage-page" class="page container">
+    <div id="manage-page" class="page container large">
         <div class="glass-card large">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                 <h1>品項管理系統</h1>
@@ -247,9 +247,39 @@
                 <h2>網站全局設定</h2>
                 <div class="input-group" style="margin-top: 15px;">
                     <label for="set-form-title">首頁標題名稱</label>
-                    <div style="display: flex; gap: 10px;">
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
                         <input type="text" id="set-form-title" placeholder="修改首頁大標題">
-                        <button id="save-settings-btn" class="btn-small" style="width: 100px;">儲存</button>
+                        
+                        <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <label style="margin:0; font-size: 0.9rem;">顏色</label>
+                                <input type="color" id="set-form-title-color" value="#00f0ff" style="width: 50px; padding: 0; height: 36px; border: none; cursor: pointer;">
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <label style="margin:0; font-size: 0.9rem;">大小(電腦)</label>
+                                <select id="set-form-title-size" style="width: auto; padding: 6px 12px; height: 36px;">
+                                    <option value="1.5rem">小 (1.5rem)</option>
+                                    <option value="2.2rem">中 (2.2rem)</option>
+                                    <option value="3rem" selected>大 (3rem)</option>
+                                    <option value="4rem">特大 (4rem)</option>
+                                </select>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <label style="margin:0; font-size: 0.9rem;">大小(手機)</label>
+                                <select id="set-form-title-size-mobile" style="width: auto; padding: 6px 12px; height: 36px;">
+                                    <option value="1.5rem">小 (1.5rem)</option>
+                                    <option value="2.2rem" selected>中 (2.2rem)</option>
+                                    <option value="3rem">大 (3rem)</option>
+                                </select>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <label style="margin:0; font-size: 0.9rem; cursor: pointer;"><input type="checkbox" id="set-form-title-bold" style="width: 18px; height: 18px; margin: 0; accent-color: var(--primary);"> 粗體</label>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <label style="margin:0; font-size: 0.9rem; cursor: pointer;"><input type="checkbox" id="set-form-title-italic" style="width: 18px; height: 18px; margin: 0; accent-color: var(--primary);"> 斜體</label>
+                            </div>
+                            <button id="save-settings-btn" class="btn-small" style="width: 100px; height: 36px;">儲存</button>
+                        </div>
                     </div>
                 </div>
                 <div class="input-group" style="margin-top: 15px;">
@@ -264,7 +294,7 @@
     </div>
 
     <!-- Product Detail Page -->
-    <div id="detail-page" class="page container">
+    <div id="detail-page" class="page container large">
         <div class="glass-card">
             <button id="back-to-form-btn" class="btn-small mb-4" style="background: rgba(255,255,255,0.1); color: #fff; width: auto;">← 返回首頁</button>
             <div style="display: flex; flex-direction: column; gap: 20px;">
@@ -287,7 +317,7 @@
     </div>
 
     <!-- Records List Page -->
-    <div id="list-page" class="page container">
+    <div id="list-page" class="page container large">
         <div class="glass-card large">
             <h1>購物清單</h1>
             <div style="display: flex; gap: 10px; margin-bottom: 24px;">
@@ -320,7 +350,7 @@
     </div>
 
     <!-- Users List Page -->
-    <div id="users-page" class="page container">
+    <div id="users-page" class="page container large">
         <div class="glass-card large">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                 <h1>使用者列表</h1>
@@ -373,7 +403,7 @@
                 </div>
                 <div class="input-group">
                     <label for="profile-title">稱謂</label>
-                    <select id="profile-title" required style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.5); outline: none; font-size: 16px; font-family: inherit; color: #333;">
+                    <select id="profile-title" required style="width: 100%; padding: 12px 16px; border-radius: 12px; outline: none; font-size: 16px; font-family: inherit;">
                         <option value="">請選擇稱謂</option>
                         <option value="先生">先生</option>
                         <option value="小姐">小姐</option>
@@ -393,7 +423,7 @@
                 </div>
                 <div class="input-group">
                     <label for="profile-city">縣市（選填）</label>
-                    <select id="profile-city" style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.5); outline: none; font-size: 16px; font-family: inherit; color: #333;">
+                    <select id="profile-city" style="width: 100%; padding: 12px 16px; border-radius: 12px; outline: none; font-size: 16px; font-family: inherit;">
                         <option value="">請選擇縣市</option>
                         <option>台北市</option><option>新北市</option><option>桃園市</option>
                         <option>台中市</option><option>台南市</option><option>高雄市</option>
@@ -439,11 +469,11 @@
                 </div>
                 <div class="input-group">
                     <label for="prod-short-desc">卡片簡短描述</label>
-                    <textarea id="prod-short-desc" required style="width: 100%; padding: 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.5); min-height: 60px; font-family: inherit; color: #fff;"></textarea>
+                    <textarea id="prod-short-desc" required style="width: 100%; padding: 12px; border-radius: 12px; min-height: 60px; font-family: inherit;"></textarea>
                 </div>
                 <div class="input-group">
                     <label for="prod-long-desc">產品詳細介紹 <span style="font-size: 11px; color: #a5b4fc;">（支援 Markdown：**粗體** *斜體* - 清單 ## 標題 換行請按兩次 Enter）</span></label>
-                    <textarea id="prod-long-desc" required style="width: 100%; padding: 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.5); min-height: 120px; font-family: monospace; color: #fff;"></textarea>
+                    <textarea id="prod-long-desc" required style="width: 100%; padding: 12px; border-radius: 12px; min-height: 120px; font-family: monospace;"></textarea>
                 </div>
                 <div class="input-group">
                     <label for="prod-image">產品圖片</label>
@@ -466,15 +496,15 @@
                 </div>
                 <div class="input-group">
                     <label for="edit-description">使用者備註 (僅限使用者編輯)</label>
-                    <textarea id="edit-description" style="width: 100%; padding: 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.5); min-height: 80px; font-family: inherit; color: #fff;"></textarea>
+                    <textarea id="edit-description" style="width: 100%; padding: 12px; border-radius: 12px; min-height: 80px; font-family: inherit;"></textarea>
                 </div>
                 <div class="input-group">
                     <label for="edit-admin-note">管理者備註 (僅限管理者編輯)</label>
-                    <textarea id="edit-admin-note" style="width: 100%; padding: 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.5); min-height: 80px; font-family: inherit; color: #fff;"></textarea>
+                    <textarea id="edit-admin-note" style="width: 100%; padding: 12px; border-radius: 12px; min-height: 80px; font-family: inherit;"></textarea>
                 </div>
                 <div class="input-group">
                     <label for="edit-status">訂單狀態 (僅限管理者)</label>
-                    <select id="edit-status" style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.5); outline: none; font-size: 16px; font-family: inherit; color: #333;">
+                    <select id="edit-status" style="width: 100%; padding: 12px 16px; border-radius: 12px; outline: none; font-size: 16px; font-family: inherit;">
                         <option value="進行中">進行中</option>
                         <option value="未完成">未完成</option>
                         <option value="已確認">已確認</option>
@@ -488,7 +518,7 @@
         </div>
     </div>
 
-    <script src="script.js?v=20260501_2217"></script>
+    <script src="script.js?v=20260503_1241"></script>
 
 </body>
 </html>
