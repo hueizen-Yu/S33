@@ -1,12 +1,13 @@
 :root {
-    --primary: #e5b3bb; /* Rose Gold Accent */
-    --secondary: #c9939f; /* Deep Rose */
-    --bg-dark: #090a0f; /* Obsidian Black */
-    --glass-bg: rgba(20, 20, 25, 0.75); /* Dark Glass */
-    --glass-border: rgba(229, 179, 187, 0.25); /* Rose Gold Tinted Border */
+    --primary: #00f0ff; /* Cyberpunk Cyan */
+    --secondary: #d946ef; /* Neon Fuchsia */
+    --bg-dark: #09090b; /* Deep dark zinc */
+    --glass-bg: rgba(24, 24, 27, 0.75); /* Dark semi-transparent */
+    --glass-border: rgba(0, 240, 255, 0.2); /* Subtle cyan border */
     --text-primary: #f8fafc;
     --text-muted: #94a3b8;
-    --btn-text: #000;
+    --text-general: #f8fafc; /* New: General text color */
+    --glow-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
 }
 
 * {
@@ -149,6 +150,26 @@ h1 {
     font-weight: 700;
     text-shadow: 0 0 10px rgba(229, 179, 187, 0.4);
     letter-spacing: 2px;
+}
+
+/* 讓管理頁面與其他分頁的標題大小一致 */
+.glass-card h1 {
+    font-size: var(--title-size-mobile, 2.2rem);
+}
+@media (min-width: 768px) {
+    .glass-card h1 {
+        font-size: var(--title-size-desktop, 3rem);
+    }
+}
+
+/* 讓管理頁面與其他分頁的標題大小一致 */
+.glass-card h1 {
+    font-size: var(--title-size-mobile, 2.2rem);
+}
+@media (min-width: 768px) {
+    .glass-card h1 {
+        font-size: var(--title-size-desktop, 3rem);
+    }
 }
 
 @media (min-width: 768px) {
