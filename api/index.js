@@ -66,7 +66,7 @@ async function verifyToken(req, res, next) {
 
 // Initialize PostgreSQL database
 const pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
+    connectionString: process.env.DATABASE_URL || 'postgresql://neondb_owner:npg_pZSMuW9F2aBI@ep-lingering-union-an0xpv9b.c-6.us-east-1.aws.neon.tech/neondb?sslmode=require',
     ssl: {
         rejectUnauthorized: false
     }
@@ -140,7 +140,7 @@ async function initDB() {
             client.query(`INSERT INTO settings (key, value) VALUES ('name3', '旗艦套裝') ON CONFLICT DO NOTHING;`),
             client.query(`INSERT INTO settings (key, value) VALUES ('short_desc3', '頂規旗艦硬體') ON CONFLICT DO NOTHING;`),
             client.query(`INSERT INTO settings (key, value) VALUES ('long_desc3', '全鋁合金外殼設計，內建高速儲存空間，並包含全套雲端協作服務。') ON CONFLICT DO NOTHING;`),
-            client.query(`INSERT INTO settings (key, value) VALUES ('form_title', '哈晶礦') ON CONFLICT DO NOTHING;`)
+            client.query(`INSERT INTO settings (key, value) VALUES ('form_title', '購物需求申請') ON CONFLICT DO NOTHING;`)
         ]);
 
         // Seed initial products if none exist
@@ -178,6 +178,13 @@ async function initDB() {
         await client.query(`ALTER TABLE users ADD COLUMN IF NOT EXISTS is_admin BOOLEAN DEFAULT FALSE;`);
         // Migration: Per-product quantity limit
         await client.query(`ALTER TABLE products ADD COLUMN IF NOT EXISTS max_qty INTEGER DEFAULT 0;`);
+        // Migration: Per-product custom colors
+        await client.query(`ALTER TABLE products ADD COLUMN IF NOT EXISTS id_color TEXT;`);
+        await client.query(`ALTER TABLE products ADD COLUMN IF NOT EXISTS name_color TEXT;`);
+        await client.query(`ALTER TABLE products ADD COLUMN IF NOT EXISTS price_color TEXT;`);
+        await client.query(`ALTER TABLE products ADD COLUMN IF NOT EXISTS max_qty_color TEXT;`);
+        await client.query(`ALTER TABLE products ADD COLUMN IF NOT EXISTS short_desc_color TEXT;`);
+        await client.query(`ALTER TABLE products ADD COLUMN IF NOT EXISTS long_desc_color TEXT;`);
 
         // Migration: Extended user profile fields
         await client.query(`ALTER TABLE users ADD COLUMN IF NOT EXISTS last_name TEXT;`);
@@ -425,7 +432,10 @@ app.get('/api/products', async (req, res) => {
 
 // Create or update product (Admin only)
 app.post('/api/products', verifyToken, async (req, res) => {
-    const { id, product_id, name, short_desc, long_desc, price, image_path, max_qty } = req.body;
+    const { 
+        id, product_id, name, short_desc, long_desc, price, image_path, max_qty,
+        id_color, name_color, price_color, max_qty_color, short_desc_color, long_desc_color
+    } = req.body;
     const numericPrice = parseFloat(price) || 0;
     const numericMaxQty = parseInt(max_qty) || 0;
     const intId = id ? parseInt(id) : null;
@@ -438,8 +448,15 @@ app.post('/api/products', verifyToken, async (req, res) => {
 
         if (intId) {
             const result = await pool.query(
-                'UPDATE products SET product_id = $1, name = $2, short_desc = $3, long_desc = $4, price = $5, image_path = $6, max_qty = $7 WHERE id = $8 RETURNING *',
-                [product_id, name, short_desc, long_desc, numericPrice, image_path, numericMaxQty, intId]
+                `UPDATE products SET 
+                    product_id = $1, name = $2, short_desc = $3, long_desc = $4, price = $5, image_path = $6, max_qty = $7,
+                    id_color = $8, name_color = $9, price_color = $10, max_qty_color = $11, short_desc_color = $12, long_desc_color = $13
+                 WHERE id = $14 RETURNING *`,
+                [
+                    product_id, name, short_desc, long_desc, numericPrice, image_path, numericMaxQty,
+                    id_color, name_color, price_color, max_qty_color, short_desc_color, long_desc_color,
+                    intId
+                ]
             );
             if (result.rows.length === 0) {
                 console.warn('Update failed: No product found with ID', intId);
@@ -448,8 +465,14 @@ app.post('/api/products', verifyToken, async (req, res) => {
             console.log('Update Success:', result.rows[0]);
         } else {
             const result = await pool.query(
-                'INSERT INTO products (product_id, name, short_desc, long_desc, price, image_path, max_qty) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
-                [product_id, name, short_desc, long_desc, numericPrice, image_path, numericMaxQty]
+                `INSERT INTO products (
+                    product_id, name, short_desc, long_desc, price, image_path, max_qty,
+                    id_color, name_color, price_color, max_qty_color, short_desc_color, long_desc_color
+                ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *`,
+                [
+                    product_id, name, short_desc, long_desc, numericPrice, image_path, numericMaxQty,
+                    id_color, name_color, price_color, max_qty_color, short_desc_color, long_desc_color
+                ]
             );
             console.log('Insert Success:', result.rows[0]);
         }
